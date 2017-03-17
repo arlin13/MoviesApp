@@ -5,20 +5,44 @@
         .module('myApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['omdbFactory', 'NgMap'];
+    HomeController.$inject = ['omdbFactory', 'placesFactory', 'NgMap', '$scope'];
 
     /* @ngInject */
-    function HomeController(omdbFactory, NgMap) {
+    function HomeController(omdbFactory, placesFactory, NgMap, $scope) {
         var vm = this;
         vm.movies = [];
+        vm.loading = true;
 
-        ///////////////
+        // debugger;
+
+
+        //
+        placesFactory
+            .getPlaces()
+            .then(function(places) {
+            })
+            .catch(function(error) {
+                console.log(error);
+            })
+        //
+
+
         NgMap.getMap().then(function(map) {
-            console.log(map.getCenter());
-            console.log('markers', map.markers);
-            console.log('shapes', map.shapes);
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    vm.lat = pos.lat;
+                    vm.long = pos.lng;
+                    map.setCenter(pos);
+                    vm.loading = false;
+
+                    $scope.$apply();
+                });
+            }
         });
-        ///////////////
 
         vm.clearControl = function clearControl() {
             vm.movieName = '';
@@ -26,9 +50,9 @@
 
         vm.searchMovie = function searchMovie() {
             omdbFactory
-                .getData(vm.movieName)
-                .then(function(data) {
-                    vm.movies = data.Search;
+                .getMovies(vm.movieName)
+                .then(function(movies) {
+                    vm.movies = movies.Search;
                     console.log(vm.movies);
                     vm.clearControl();
                 })
@@ -36,8 +60,6 @@
                     console.log(error);
                 })
         }
-
-        // vm.searchMovie("sponge bob");
 
         activate();
 

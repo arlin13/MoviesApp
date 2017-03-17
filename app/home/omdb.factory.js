@@ -10,12 +10,12 @@
     /* @ngInject */
     function omdbFactory($http) {
         var service = {
-            getData: getData
+            getMovies: getMovies
         };
 
         return service;
 
-        function getData(movieName) {
+        function getMovies(movieName) {
             var url = 'http://www.omdbapi.com/?s=' + movieName;
 
             return $http
