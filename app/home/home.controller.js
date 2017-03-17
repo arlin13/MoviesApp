@@ -10,13 +10,14 @@
     /* @ngInject */
     function HomeController(omdbFactory) {
         var vm = this;
+        vm.movies=[];
 
-
-        vm.searchMovie = function searchMovie(movieName) {
+        vm.searchMovie = function searchMovie() {
             omdbFactory
-                .getData(movieName)
+                .getData(vm.movieName)
                 .then(function(data) {
-                    console.log(data);
+                    vm.movies = data.Search;
+                    console.log(vm.movies);
                 })
                 .catch(function(error) {
                     console.log(error);

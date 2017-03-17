@@ -12,16 +12,39 @@
 </head>
 
 <body ng-controller="HomeController as homeCtrl">
-    <h1>Movie finder asdfsfsdsfsd</h1>
-    <hr>
-    <pre>
-    {{homeCtrl.titanic | json}}
-  </pre>
-    <hr>
 
-    <pre id="default-spacing">{{ {'name':'value'} | json }}</pre>
+    <div class="container">
+        <h1>Movie Night</h1>
+
+        <form>
+            <div class="form-group">
+                <label>Search movie</label>
+                <input type="text" class="form-control" ng-model="homeCtrl.movieName"></input>
+                <button type="button" name="searchMovie" ng-click="homeCtrl.searchMovie()">Search</button>
+            </div>
+        </form>
+        <hr>
+        <div id="movieInfoDiv" class="">
+            <table class="table">
+              <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Year</th>
+                <th>...</th>
+              </tr>
+              <tr ng-repeat="movie in homeCtrl.movies">
+                <th>{{$index+1}}</th>
+                <th>{{movie.Title}}</th>
+                <th>{{movie.year}}</th>
+                <th></th>
+              </tr>
+            </table>
+        </div>
+    </div>
+
 
     <!-- bower:js -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="bower_components/angular/angular.js"></script>
     <!-- endbower -->
 
