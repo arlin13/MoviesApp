@@ -26,6 +26,7 @@
     }
   },
   "dependencies": {
-    "angular": "^1.6.3"
+    "angular": "^1.6.3",
+    "ngmap": "^1.18.4"
   }
 }
