@@ -12,15 +12,23 @@
 </head>
 
 <body ng-controller="HomeController as homeCtrl">
-    {{2+2}}
+    <h1>Movie finder asdfsfsdsfsd</h1>
+    <hr>
+    <pre>
+    {{homeCtrl.titanic | json}}
+  </pre>
+    <hr>
+
+    <pre id="default-spacing">{{ {'name':'value'} | json }}</pre>
+
     <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script> <!-- ADDED MANUALLY -->
+    <script src="bower_components/angular/angular.js"></script>
     <!-- endbower -->
 
     <!-- inject:js -->
-    <script src="app/app.module.js"></script> <!-- ADDED MANUALLY -->
-    <script src="app/home/home.controller.js"></script> <!-- ADDED MANUALLY -->
-    <!-- <script src="home/inqstats.factory.js"></script> -->
+    <script src="app/app.module.js"></script>
+    <script src="app/home/home.controller.js"></script>
+    <script src="app/home/omdb.factory.js"></script>
     <!-- endinject -->
 </body>
 

@@ -5,18 +5,28 @@
         .module('myApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = [];
+    HomeController.$inject = ['omdbFactory'];
 
     /* @ngInject */
-    function HomeController(dependencies) {
+    function HomeController(omdbFactory) {
         var vm = this;
 
-        vm.test = "Arlin";
+
+        vm.searchMovie = function searchMovie(movieName) {
+            omdbFactory
+                .getData(movieName)
+                .then(function(data) {
+                    console.log(data);
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })
+        }
+
+        vm.searchMovie("sponge bob");
 
         activate();
 
-        function activate() {
-
-        }
+        function activate() {}
     }
 })();
