@@ -4,6 +4,10 @@ html, body {
     padding: 0;
 }
 
+/*div{
+  padding: 10px;
+}*/
+
 #container{
   width: 90%;
   background-color: pink;
@@ -12,4 +16,8 @@ html, body {
 
 #map {
     height: 100%;
+}
+
+#restaurantList{
+  /*background-color: green;*/
 }

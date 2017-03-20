@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "angular": "^1.6.3",
-    "ngmap": "^1.18.4"
+    "ngmap": "^1.18.4",
+    "bootstrap": "^3.3.7"
   }
 }

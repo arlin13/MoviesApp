@@ -9,6 +9,7 @@
 
     /* @ngInject */
     function placesFactory($http) {
+        var key = "AIzaSyCxWskDwzfW43MiAe0dZN60jR6RN36t3Ps";
         var service = {
             getPlaces: getPlaces
         };
@@ -20,14 +21,17 @@
         //https://maps.googleapis.com/maps/api/place/nearbysearch/output?AIzaSyCxWskDwzfW43MiAe0dZN60jR6RN36t3Ps&123,123&50&restaurant
 
         function getPlaces() {
-            var url = 'https://www.google.com/maps/embed/v1/search?key=AIzaSyCxWskDwzfW43MiAe0dZN60jR6RN36t3Ps&q=record+stores+in+Seattle';
+            var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/' +
+                'json?key=' + key +
+                '&location=32.715736,-117.161087' +
+                // '&location=32.715736,-117.161087' +
+                '&radius=2000' +
+                '&type=restaurant';
 
             return $http
                 .get(url)
                 .then(function(response) {
-                    console.log("PLACES API");
-                    console.log(response.data);
-                    return response.data;
+                    return response.data.results;
                 });
         }
     }
