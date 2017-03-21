@@ -9,8 +9,11 @@ body {
     color: white;
 }
 
-.center {
-    margin: 0 auto;
+ol, li {
+    /*list-style-type: none;*/
+    /*list-style-position: inside;*/
+    margin: 0;
+    padding: 0;
 }
 
 #container {
@@ -18,11 +21,11 @@ body {
     margin: 0 auto;
 }
 
-#entranceDiv {
+#homeDiv {
     text-align: center;
 }
 
-#entranceDiv button {
+#homeDiv button {
     height: 300px;
     width: 300px;
     border-radius: 50%;
@@ -32,60 +35,68 @@ body {
     background-color: #319A71;
 }
 
-#entranceDiv button:hover {
-    /*height: 300px;
-    width: 300px;
-    border-radius: 50%;*/
-    border: 5px;
+#homeDiv button:hover {
+    border: 5px white solid;
+    background-color: #31916C;
+    color: #FFBD3D;
 }
 
 #map {
     height: 100%;
 }
 
-#customDateDiv button{
-  background-color: #6DBD45;
-  border: 0;
+#customDateDiv button {
+    background-color: #6DBD45;
+    border: 0;
 }
 
-#customDateDiv input, button{
-  height: 40px;
+#customDateDiv input, button {
+    height: 40px;
 }
 
-#customDateDiv input{
-  color:black;
+#customDateDiv input {
+    color: black;
 }
 
-#movieInfoDiv label{
-  text-align: right;
-  display: block;
+#movieInfoDiv label {
+    text-align: right;
+    display: block;
 }
 
-#restaurantDiv{
-  height: 400px;
+#restaurantDiv {
+    height: 400px;
 }
 
-#restaurantListDiv{
-  overflow: auto;
-  height: 100%;
+#restaurantListDiv {
+    overflow: auto;
+    height: 100%;
 }
 
-.title{
+.center {
+    margin: 0 auto;
+}
+
+.title {
     font-size: 60px;
     color: #FFBD3D;
     text-align: center;
     /*margin: 50px;*/
 }
 
-.subtitle{
-  font-size: 45px;
-  color: #FFBD3D;
+.subtitle {
+    font-size: 45px;
+    color: #FFBD3D;
 }
 
-.questionMouse{
-  cursor:help;
+.questionMouse {
+    cursor: help;
 }
 
-.pointerMouse{
-  cursor: pointer;
+.pointerMouse {
+    cursor: pointer;
+}
+
+.marker {
+    background: black;
+    color: white;
 }

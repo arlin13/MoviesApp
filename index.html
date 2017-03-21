@@ -22,7 +22,7 @@
             <p class="title pointerMouse">DATE PLANNER</p>
         </header>
         <!-- DEFAULT  -->
-        <div id="entranceDiv" ng-show="homeCtrl.showButons">
+        <div id="homeDiv" ng-show="homeCtrl.showButons">
             <div class="row">
                 <div class="col-md-6 center">
                     <button type="button" name="button" ng-click="homeCtrl.getRandomDate()" class="questionMouse">Random date</button>
@@ -37,6 +37,8 @@
         <!-- Random date -->
         <div id="randomDateDiv" ng-show="homeCtrl.randomDivVisibility" class="row">
             <img src="Images/popcorn.png" alt="" class="col-md-4">
+            <br><br><br>
+            <br><br><br>
             <h1 class="col-md-8">Tonight you're watchin <span class="subtitle">"{{homeCtrl.movieName}}"!</span> And eating {{homeCtrl.restaurantName}}</h1>
         </div>
 
@@ -69,15 +71,26 @@
             </div>
 
             <!-- asdf -->
-            <div id="restaurantDiv" ng-hide="homeCtrl.loading" class="row">
+            <div id="restaurantDiv" class="row">
+                <!--ng-hide="homeCtrl.loading"-->
                 <div id="map" class="col-md-8">
-                    <div ng-if="homeCtrl.loading">
-                        <h2>Loading now.. (come back here and do a load spinner at some point)</h2>
+                    <div ng-show="homeCtrl.mapLoading">
+                        <!-- <h2>Loading now.. (come back here and do a load spinner at some point)</h2> -->
+                        <!-- <span class="title" us-spinner="{radius:30, width:8, length: 16}">Loading...</span> -->
+                        <span class="title" us-spinner="{radius:30, width:8, length: 16}">   Loading map...</span>
                     </div>
-                    <div ng-if="!homeCtrl.loading">
+                    <div ng-show="!homeCtrl.mapLoading">
                         <div map-lazy-load="https://maps.google.com/maps/api/js?key=AIzaSyCxWskDwzfW43MiAe0dZN60jR6RN36t3Ps">
                             <ng-map center="current-location" zoom="18">
-                                <marker position="{{homeCtrl.lat}},{{homeCtrl.long}}" title="Hello World!"></marker>
+                                <!-- on-click="vm.map.showInfoWindow('foo', 'custom-marker-'+$index)"
+                              position="{{p.pos}}" -->
+                                <custom-marker ng-repeat="r in homeCtrl.restaurants track by $index" id="custom-marker-{{$index}}" position="[{{r.geometry.location.lat}},{{r.geometry.location.lng}}]">
+                                    <div>
+                                        <span class="marker">{{$index+1}}. {{r.name}}</span>
+                                    </div>
+                                </custom-marker>
+                                <!-- <marker position="{{homeCtrl.lat}},{{homeCtrl.long}}" title="Hello World!"></marker> -->
+                                <!-- <marker ng-repet="restaurant in homeCtrl.restaurants"></marker> -->
                                 <!-- <marker ng-repeat="restaurant in homeCtrl.restaurants" position="{{restaurant.lat}},{{restaurant.long}}" title="{{restaurant.name}}"></marker> -->
                             </ng-map>
                         </div>
@@ -94,6 +107,7 @@
                                     <!-- datils -->
                                     <label>Rating:</label>
                                     <span>{{restaurant.rating}}</span>
+                                    <br>
                                     <label>Address:</label>
                                     <span>{{restaurant.vicinity}}</span>
                                 </div>
@@ -108,7 +122,7 @@
         </div>
     </div>
 
-
+    <script src="bower_components/angular-spinner/dist/angular-spinner.min.js"></script>
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/ngmap/build/scripts/ng-map.js"></script>

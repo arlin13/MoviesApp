@@ -11,8 +11,8 @@
     function HomeController(omdbFactory, placesFactory, NgMap, $scope, $timeout) {
         var vm = this;
         vm.movies = [];
-        vm.loading = true;
-        vm.entranceDivVisibility = true;
+        vm.mapLoading = true;
+        vm.homeDivVisibility = true;
         vm.randomDivVisibility = false;
         vm.customDivVisibility = false;
         vm.showButons = true;
@@ -22,7 +22,7 @@
 
         //HOME PAGE
         vm.showHome = function showHome() {
-            vm.entranceDivVisibility = true;
+            vm.homeDivVisibility = true;
             vm.randomDivVisibility = false;
             vm.customDivVisibility = false;
             vm.showButons = true;
@@ -30,7 +30,7 @@
 
         //RANDOM DATE PAGE
         vm.getRandomDate = function getRandomDate() {
-            vm.entranceDivVisibility = false;
+            vm.homeDivVisibility = false;
             vm.randomDivVisibility = true;
             vm.customDivVisibility = false;
             vm.showButons = false;
@@ -62,13 +62,13 @@
 
         //CUSTOM DATE PAGE
         vm.showSearchPage = function showSearchPage() {
-            vm.entranceDivVisibility = false;
+            vm.homeDivVisibility = false;
             vm.customDivVisibility = true;
             vm.randomDivVisibility = false;
             vm.showButons = false;
-
+            vm.movies = [];
             $timeout(function() {
-                vm.loading = false;
+                vm.mapLoading = false;
             }, 3000);
             // RESTAURANTS LIST
             vm.restaurantAPICall();
@@ -111,7 +111,6 @@
                     vm.movies = movies.Search;
                     vm.clearControl();
                     return movies.Search;
-                    console.log("getting movies");
                 })
                 .catch(function(error) {
                     console.log(error);
@@ -123,7 +122,6 @@
                 .getPlaces()
                 .then(function(restaurants) {
                     vm.restaurants = restaurants;
-                    console.log(restaurants);
                     return restaurants;
                 })
                 .catch(function(error) {
