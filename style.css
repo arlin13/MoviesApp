@@ -5,11 +5,9 @@ html, body {
 }
 
 body {
-    /*background-image: url("Images/background.jpg");*/
     background-color: #313237;
     color: white;
 }
-
 
 .center {
     margin: 0 auto;
@@ -35,10 +33,10 @@ body {
 }
 
 #entranceDiv button:hover {
-    height: 300px;
+    /*height: 300px;
     width: 300px;
-    border-radius: 50%;
-    border: 0;
+    border-radius: 50%;*/
+    border: 5px;
 }
 
 #map {
@@ -76,5 +74,18 @@ body {
     font-size: 60px;
     color: #FFBD3D;
     text-align: center;
-    margin: 50px;
+    /*margin: 50px;*/
+}
+
+.subtitle{
+  font-size: 45px;
+  color: #FFBD3D;
+}
+
+.questionMouse{
+  cursor:help;
+}
+
+.pointerMouse{
+  cursor: pointer;
 }

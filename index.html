@@ -18,28 +18,31 @@
 <body ng-controller="HomeController as homeCtrl">
 
     <div id="container">
+        <header ng-click="homeCtrl.showHome()">
+            <p class="title pointerMouse">DATE PLANNER</p>
+        </header>
         <!-- DEFAULT  -->
         <div id="entranceDiv" ng-show="homeCtrl.showButons">
-            <p class="title">Date planner</p>
             <div class="row">
                 <div class="col-md-6 center">
-                    <button type="button" name="button" ng-click="homeCtrl.getRandomDate()">Random date</button>
+                    <button type="button" name="button" ng-click="homeCtrl.getRandomDate()" class="questionMouse">Random date</button>
+                    <!-- <p class="subtitle">Random date</p> -->
                 </div>
-                <div class="col-md-6 center">
-                    <button type="button" name="button" ng-click="homeCtrl.showSearchPage()">Custom date</button>
+                <div class="col-md-6 center overlay">
+                    <button type="button" name="button" ng-click="homeCtrl.showSearchPage()" class="pointerMouse">Custom date</button>
                 </div>
             </div>
         </div>
 
         <!-- Random date -->
-        <div id="randomDateDiv" ng-show="homeCtrl.randomDivVisibility">
-            <h1>Tonight you're watchin "{{homeCtrl.movieName}}"</h1>
-            <h1>And eating {{homeCtrl.restaurantName}}</h1>
+        <div id="randomDateDiv" ng-show="homeCtrl.randomDivVisibility" class="row">
+            <img src="Images/popcorn.png" alt="" class="col-md-4">
+            <h1 class="col-md-8">Tonight you're watchin <span class="subtitle">"{{homeCtrl.movieName}}"!</span> And eating {{homeCtrl.restaurantName}}</h1>
         </div>
 
         <!-- CUSTOM DATE -->
         <div id="customDateDiv" ng-show="homeCtrl.customDivVisibility">
-            <p class="title">Movie Night</p>
+            <p class="subtitle">Movie Night</p>
             <section>
                 <div class="row">
                     <input type="text" class="col-md-8" placeholder="Search movie..." ng-model="homeCtrl.searchMovieText"></input>
@@ -47,7 +50,7 @@
                     <button type="button" class="col-md-3" name="searchMovie" ng-click="homeCtrl.getMovies()">Search</button>
                 </div>
             </section>
-<br>
+            <br>
             <div id="movieInfoDiv" ng-show="homeCtrl.movies.length > 0">
                 <table class="table table-condensed">
                     <tr>

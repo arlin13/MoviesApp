@@ -12,6 +12,7 @@
         var vm = this;
         vm.movies = [];
         vm.loading = true;
+        vm.entranceDivVisibility = true;
         vm.randomDivVisibility = false;
         vm.customDivVisibility = false;
         vm.showButons = true;
@@ -19,18 +20,24 @@
         vm.movieName = '';
         vm.restaurantName = '';
 
+        //HOME PAGE
+        vm.showHome = function showHome() {
+            vm.entranceDivVisibility = true;
+            vm.randomDivVisibility = false;
+            vm.customDivVisibility = false;
+            vm.showButons = true;
+        }
 
+        //RANDOM DATE PAGE
         vm.getRandomDate = function getRandomDate() {
+            vm.entranceDivVisibility = false;
             vm.randomDivVisibility = true;
             vm.customDivVisibility = false;
             vm.showButons = false;
 
             //MOVIES
-            // get a list of movies that contains the random letter
             vm.movieAPICall(vm.getRandomLetter()).then(function(movies) {
-                // pick randomly one movie of the list
                 vm.randomNumber = parseInt(getRandomArbitrary(0, (movies.length - 1)));
-                // slect the movie at that index
                 vm.selectedMovie = movies[vm.randomNumber];
                 vm.movieName = vm.selectedMovie.Title;
             });
@@ -53,18 +60,19 @@
             return Math.random() * (max - min) + min;
         }
 
+        //CUSTOM DATE PAGE
         vm.showSearchPage = function showSearchPage() {
+            vm.entranceDivVisibility = false;
             vm.customDivVisibility = true;
             vm.randomDivVisibility = false;
             vm.showButons = false;
-            
+
             $timeout(function() {
                 vm.loading = false;
             }, 3000);
             // RESTAURANTS LIST
             vm.restaurantAPICall();
         }
-
 
         //MAP
         NgMap.getMap().then(function(map) {
@@ -85,7 +93,6 @@
             }
         });
 
-
         // SEARCH MOVIE
         vm.clearControl = function clearControl() {
             vm.searchMovieText = '';
@@ -96,6 +103,7 @@
             vm.movieAPICall(vm.searchMovieText);
         }
 
+        //API CALLS
         vm.movieAPICall = function movieAPICall(searchText) {
             return omdbFactory
                 .getMovies(searchText)
