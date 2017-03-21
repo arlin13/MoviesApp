@@ -4,20 +4,77 @@ html, body {
     padding: 0;
 }
 
-/*div{
-  padding: 10px;
-}*/
+body {
+    /*background-image: url("Images/background.jpg");*/
+    background-color: #313237;
+    color: white;
+}
 
-#container{
-  width: 90%;
-  background-color: pink;
-  margin: 0 auto;
+
+.center {
+    margin: 0 auto;
+}
+
+#container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+#entranceDiv {
+    text-align: center;
+}
+
+#entranceDiv button {
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    border: 0;
+    margin-top: 100px;
+    font-size: 40px;
+    background-color: #319A71;
+}
+
+#entranceDiv button:hover {
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    border: 0;
 }
 
 #map {
     height: 100%;
 }
 
-#restaurantList{
-  /*background-color: green;*/
+#customDateDiv button{
+  background-color: #6DBD45;
+  border: 0;
+}
+
+#customDateDiv input, button{
+  height: 40px;
+}
+
+#customDateDiv input{
+  color:black;
+}
+
+#movieInfoDiv label{
+  text-align: right;
+  display: block;
+}
+
+#restaurantDiv{
+  height: 400px;
+}
+
+#restaurantListDiv{
+  overflow: auto;
+  height: 100%;
+}
+
+.title{
+    font-size: 60px;
+    color: #FFBD3D;
+    text-align: center;
+    margin: 50px;
 }

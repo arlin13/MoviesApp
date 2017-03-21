@@ -19,10 +19,16 @@
 
     <div id="container">
         <!-- DEFAULT  -->
-        <div id="entranceDiv">
-            <h1>Date planner</h1>
-            <button type="button" name="button" ng-click="homeCtrl.getRandomDate()" class="btn btn-primary">Random date</button>
-            <button type="button" name="button" ng-click="homeCtrl.showSearchPage()" class="btn btn-primary">Custom date</button>
+        <div id="entranceDiv" ng-show="homeCtrl.showButons">
+            <p class="title">Date planner</p>
+            <div class="row">
+                <div class="col-md-6 center">
+                    <button type="button" name="button" ng-click="homeCtrl.getRandomDate()">Random date</button>
+                </div>
+                <div class="col-md-6 center">
+                    <button type="button" name="button" ng-click="homeCtrl.showSearchPage()">Custom date</button>
+                </div>
+            </div>
         </div>
 
         <!-- Random date -->
@@ -33,20 +39,17 @@
 
         <!-- CUSTOM DATE -->
         <div id="customDateDiv" ng-show="homeCtrl.customDivVisibility">
-
-            <h1>Movie Night</h1>
-
-            <form>
-                <div class="form-group">
-                    <label>Search movie</label>
-                    <input type="text" class="form-control" ng-model="homeCtrl.searchMovieText"></input>
-                    <button type="button" name="searchMovie" ng-click="homeCtrl.getMovies()">Search</button>
+            <p class="title">Movie Night</p>
+            <section>
+                <div class="row">
+                    <input type="text" class="col-md-8" placeholder="Search movie..." ng-model="homeCtrl.searchMovieText"></input>
+                    <div class="col-md-1"></div>
+                    <button type="button" class="col-md-3" name="searchMovie" ng-click="homeCtrl.getMovies()">Search</button>
                 </div>
-            </form>
-            <hr>
-            <div id="movieInfoDiv" class="">
-                <label>Total coincidences: {{homeCtrl.movies.length}}</label>
-                <table class="table">
+            </section>
+<br>
+            <div id="movieInfoDiv" ng-show="homeCtrl.movies.length > 0">
+                <table class="table table-condensed">
                     <tr>
                         <th></th>
                         <th>Name</th>
@@ -63,8 +66,8 @@
             </div>
 
             <!-- asdf -->
-            <div id="restaurant" ng-hide="homeCtrl.loading" class="row">
-                <div id="map" class="col-md-6">
+            <div id="restaurantDiv" ng-hide="homeCtrl.loading" class="row">
+                <div id="map" class="col-md-8">
                     <div ng-if="homeCtrl.loading">
                         <h2>Loading now.. (come back here and do a load spinner at some point)</h2>
                     </div>
@@ -77,7 +80,8 @@
                         </div>
                     </div>
                 </div>
-                <div id="list" class="col-md-6">
+                <div class="col-md-1"></div>
+                <div id="restaurantListDiv" class="col-md-3">
                     <ol id="restaurantList">
                         <li ng-repeat="restaurant in homeCtrl.restaurants">
                             <div>
@@ -101,8 +105,6 @@
         </div>
     </div>
 
-
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>

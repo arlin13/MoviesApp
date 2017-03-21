@@ -14,6 +14,7 @@
         vm.loading = true;
         vm.randomDivVisibility = false;
         vm.customDivVisibility = false;
+        vm.showButons = true;
 
         vm.movieName = '';
         vm.restaurantName = '';
@@ -22,6 +23,7 @@
         vm.getRandomDate = function getRandomDate() {
             vm.randomDivVisibility = true;
             vm.customDivVisibility = false;
+            vm.showButons = false;
 
             //MOVIES
             // get a list of movies that contains the random letter
@@ -54,11 +56,13 @@
         vm.showSearchPage = function showSearchPage() {
             vm.customDivVisibility = true;
             vm.randomDivVisibility = false;
+            vm.showButons = false;
+            
             $timeout(function() {
                 vm.loading = false;
             }, 3000);
             // RESTAURANTS LIST
-            restaurantAPICall();
+            vm.restaurantAPICall();
         }
 
 
